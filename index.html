@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pariyr Roshan Kumar — International Commerce Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:    #0D1B2A;
+      --ink:     #1C2B3A;
+      --slate:   #3D5166;
+      --gold:    #C9A84C;
+      --gold-lt: #E8C96B;
+      --cream:   #F7F3EC;
+      --white:   #FFFFFF;
+      --muted:   #8A9BAD;
+      --border:  rgba(201,168,76,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--cream); line-height: 1.6; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(13,27,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.85rem; font-weight: 500; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 10rem 5vw 6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 70%, rgba(61,81,102,0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-watermark {
+      position: absolute; right: -4vw; top: 50%; transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(12rem, 22vw, 28rem); font-weight: 900;
+      color: transparent; -webkit-text-stroke: 1px rgba(201,168,76,0.10);
+      pointer-events: none; user-select: none; line-height: 1;
+    }
+    .hero-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; line-height: 1.05; color: var(--white); margin-bottom: 1.2rem; }
+    .hero-name span { color: var(--gold); }
+    .hero-tagline { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--muted); max-width: 480px; font-weight: 300; margin-bottom: 2.8rem; }
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--cream); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    section { padding: 6rem 5vw; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--white); margin-bottom: 3rem; line-height: 1.2; }
+    .gold-rule { width: 48px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+
+    #about { background: var(--ink); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+    .about-text p + p { margin-top: 1.2rem; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat-card { background: var(--navy); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.05em; }
+
+    #skills { background: var(--navy); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-card { background: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 1.8rem 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .skill-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .skill-name { font-weight: 600; color: var(--white); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .skill-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    #experience { background: var(--ink); }
+    .timeline { display: flex; flex-direction: column; gap: 2rem; }
+    .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .timeline-date { font-size: 0.78rem; color: var(--gold); font-weight: 600; letter-spacing: 0.05em; padding-top: 0.2rem; }
+    .timeline-role { font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
+    .timeline-org { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .timeline-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    #contact { background: var(--navy); text-align: center; }
+    #contact .section-title { margin-bottom: 1rem; }
+    .contact-sub { color: var(--muted); max-width: 420px; margin: 0 auto 2.5rem; font-size: 0.95rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    footer { text-align: center; padding: 2rem 5vw; background: var(--ink); font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 720px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+      .nav-links { display: none; }
+      .hero-watermark { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Pariyr Roshan Kumar</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="chatbot.html">AI Assistant →</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-watermark">🌐</div>
+    <p class="hero-eyebrow">International Commerce &amp; Business · Konkuk University</p>
+    <h1 class="hero-name">Hello, I'm<br /><span>Pariyr Roshan Kumar</span></h1>
+    <p class="hero-tagline">1st year student at Konkuk University, Seoul — exploring global markets, trade dynamics, and cross-border business strategy.</p>
+    <div class="hero-cta-row">
+      <a class="btn btn-primary" href="#about">Learn more</a>
+      <a class="btn btn-outline" href="chatbot.html">Try my AI Assistant</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <div class="gold-rule"></div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">A student passionate about<br />global trade &amp; business.</h2>
+        <div class="about-text">
+          <p>I'm Pariyr Roshan Kumar, a 1st year International Commerce and Business student at Konkuk University in Seoul, South Korea. I'm deeply interested in how goods, services, and ideas move across borders — from trade policy to emerging market dynamics.</p>
+          <p>Studying in Seoul gives me a unique front-row seat to one of Asia's most dynamic economies. When I'm not in class, I'm exploring how technology — including AI — is reshaping the way businesses compete globally.</p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">1st</div>
+          <div class="stat-label">Year at Konkuk University</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">🇰🇷</div>
+          <div class="stat-label">Based in Seoul, South Korea</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">🌏</div>
+          <div class="stat-label">International Commerce Focus</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">AI</div>
+          <div class="stat-label">Tech & Tools Enthusiast</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="gold-rule"></div>
+    <h2 class="section-title">What I bring to the table.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Market Analysis</div>
+        <div class="skill-desc">Identifying trends and competitive dynamics in global and regional markets.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">International Trade</div>
+        <div class="skill-desc">Understanding trade agreements, tariffs, customs, and cross-border logistics.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📝</div>
+        <div class="skill-name">Business Communication</div>
+        <div class="skill-desc">Writing reports, proposals, and presentations for professional audiences.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">AI &amp; Tech Tools</div>
+        <div class="skill-desc">Leveraging modern AI tools to research, create, and solve problems faster.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📈</div>
+        <div class="skill-name">Data Literacy</div>
+        <div class="skill-desc">Reading and interpreting economic data, trade statistics, and financial reports.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-name">Cross-cultural Communication</div>
+        <div class="skill-desc">Working effectively with people from diverse cultural and business backgrounds.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">Experience &amp; Education</div>
+    <div class="gold-rule"></div>
+    <h2 class="section-title">My journey so far.</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2025 — Present</div>
+        <div>
+          <div class="timeline-role">B.A. International Commerce &amp; Business</div>
+          <div class="timeline-org">Konkuk University, Seoul, South Korea</div>
+          <div class="timeline-desc">Studying international trade law, global marketing, economics, and cross-border business strategy in one of Asia's leading universities.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2025</div>
+        <div>
+          <div class="timeline-role">AI Web Application Project</div>
+          <div class="timeline-org">Konkuk University — Coursework</div>
+          <div class="timeline-desc">Built an AI-powered general-purpose assistant web application using the Anthropic Claude API, deployed on GitHub Pages as part of a university assignment.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Upcoming</div>
+        <div>
+          <div class="timeline-role">Internship &amp; Further Experience</div>
+          <div class="timeline-org">To be updated</div>
+          <div class="timeline-desc">Currently seeking opportunities in international business, trade, or related fields. Open to internships and collaborative projects.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="gold-rule" style="margin: 0 auto 2rem;"></div>
+    <h2 class="section-title">Let's connect.</h2>
+    <p class="contact-sub">Whether it's a project, an opportunity, or just a conversation about global markets — feel free to reach out.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:pariyarroshan1030@gmail.com">Email Me</a>
+      <a class="btn btn-outline" href="https://github.com/pariyarroshan1030-coder" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="chatbot.html">Try AI Assistant</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Pariyr Roshan Kumar &nbsp;·&nbsp; International Commerce &amp; Business · Konkuk University, Seoul &nbsp;·&nbsp; <a href="chatbot.html" style="color:var(--gold);text-decoration:none;">Try the AI Assistant →</a></p>
+  </footer>
+
+</body>
+</html>
